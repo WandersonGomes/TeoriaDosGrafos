@@ -12,6 +12,8 @@ typedef struct {
 } Lista;
 
 Lista* criarLista();
-
+void inserir(Lista* lista, int dado);
+void imprimirLista(Lista* lista);
+void destruirLista(Lista* lista);
 
 #endif
