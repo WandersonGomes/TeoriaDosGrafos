@@ -18,6 +18,7 @@ GrafoMatrizAdjacencia* criarGrafoMatrizAdjacencia(int quantidade_vertices, int d
         grafo->direcionado = (direcionado == DIRECIONADO) ? DIRECIONADO : NAO_DIRECIONADO;
         grafo->quantidade_vertices = quantidade_vertices;
         grafo->matriz_adjacencia = criarMatrizDinamica(quantidade_vertices, quantidade_vertices);
+        grafo->matriz_pesos = criarMatrizDinamica(quantidade_vertices, quantidade_vertices);
     }
 
     return grafo;
@@ -37,11 +38,13 @@ void adicionarArestaGrafoMatrizAdjacencia(GrafoMatrizAdjacencia* grafo, Aresta a
         int origem  = aresta.vertice_origem - 1, 
             destino = aresta.vertice_destino - 1;
 
-        grafo->matriz_adjacencia[origem][destino] = aresta.peso;
+        grafo->matriz_adjacencia[origem][destino] = 1;
+        grafo->matriz_pesos[origem][destino] = aresta.peso;
 
-        if (grafo->direcionado == NAO_DIRECIONADO)
-            grafo->matriz_adjacencia[destino][origem] = aresta.peso;
-
+        if (grafo->direcionado == NAO_DIRECIONADO) {
+            grafo->matriz_adjacencia[destino][origem] = 1;
+            grafo->matriz_pesos[destino][origem] = aresta.peso;
+        }
     } else {
         puts("ERROR: aresta impossivel de ser adicionada!");
     }
@@ -55,10 +58,14 @@ void imprimirGrafoMatrizAdjacencia(GrafoMatrizAdjacencia* grafo) {
     
     puts("MATRIZ DE ADJACENCIA:");
     imprimirMatrizDinamica(grafo->matriz_adjacencia, grafo->quantidade_vertices, grafo->quantidade_vertices);
+
+    puts("\nMATRIZ DE PESOS [GRAFO PONDERADO]:");
+    imprimirMatrizDinamica(grafo->matriz_pesos, grafo->quantidade_vertices, grafo->quantidade_vertices);
 }
 
 void destruirGrafoMatrizAdjacencia(GrafoMatrizAdjacencia* grafo) {
     destruirMatrizDinamica(grafo->matriz_adjacencia, grafo->quantidade_vertices);
+    destruirMatrizDinamica(grafo->matriz_pesos, grafo->quantidade_vertices);
     free(grafo);
 }
 
@@ -83,8 +90,8 @@ void adicionarArestaGrafoMatrizIncidencia(GrafoMatrizIncidencia* grafo, Aresta a
                 destino = aresta.vertice_destino - 1;
 
             numero--;
-            grafo->matriz_incidencia[origem][numero] = aresta.peso;
-            grafo->matriz_incidencia[destino][numero] = (grafo->direcionado == NAO_DIRECIONADO) ? aresta.peso : -aresta.peso;
+            grafo->matriz_incidencia[origem][numero] = 1;
+            grafo->matriz_incidencia[destino][numero] = (grafo->direcionado == NAO_DIRECIONADO) ? 1 : -1;
         } else {
             puts("ERROR: numero da aresta fora do intervalo!");
         }

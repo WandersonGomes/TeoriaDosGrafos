@@ -1,10 +1,20 @@
 #ifndef __LISTA__
 #define __LISTA__
 
+typedef struct {
+    int vertice;
+    double peso;
+} Dado;
+
+Dado criarDado(int vertice, double peso);
+
 typedef struct no {
-    int dado;
+    Dado dado;
     struct no* proximo;
 } No;
+
+No* criarNo(Dado dado);
+void imprimirNo(No* no);
 
 typedef struct {
     int tamanho;
@@ -12,7 +22,7 @@ typedef struct {
 } Lista;
 
 Lista* criarLista();
-void inserir(Lista* lista, int dado);
+void inserirListaOrdenadoCrescente(Lista* lista, Dado dado);
 void imprimirLista(Lista* lista);
 void destruirLista(Lista* lista);
 

@@ -17,6 +17,7 @@ typedef struct {
     int direcionado;
     int quantidade_vertices;
     double** matriz_adjacencia;
+    double** matriz_pesos;
 } GrafoMatrizAdjacencia;
 
 GrafoMatrizAdjacencia* criarGrafoMatrizAdjacencia(int quantidade_vertices, int direcionado);

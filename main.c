@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-#include "bibliotecas\grafo\grafo.h"
+#include "./bibliotecas/grafo/grafo.h"
 
 #define ERROR -1
 #define SUCESSO 1
