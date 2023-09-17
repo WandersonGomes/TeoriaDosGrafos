@@ -1,8 +1,3 @@
-/*
-    DEFINICAO ADOTADA NESTA IMPLEMENTACAO:
-    
-*/
-
 #include <stdio.h>
 #include <stdlib.h>
 #include "../bibliotecas/matriz/matriz.h"

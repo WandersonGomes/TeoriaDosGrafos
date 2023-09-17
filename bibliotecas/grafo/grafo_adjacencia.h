@@ -1,6 +1,18 @@
 #ifndef __GRAFO_ADJACENCIA__
 #define __GRAFO_ADJACENCIA__
 
+/*
+    DEFINICAO ADOTADA NESTA IMPLEMENTACAO:
+    Matriz de Adjacência é uma matriz n x n, denotada por X = [x_ij] e definida como:
+        x_ij = 1, se existe uma aresta entre os vertices vi e vj,
+        x_ij = 0, caso contrario.
+
+    Obs.:
+    Se tivermos um grafo orientado(digrafo):
+        x_ij = 1, se existe uma aresta direcionada do vertice vi para o vertice vj,
+        x_ij = 0, caso contrario.  
+*/
+
 typedef struct {
     int vertice_origem;
     int vertice_destino;
