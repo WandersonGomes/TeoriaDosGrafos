@@ -1,5 +1,6 @@
 #ifndef __GRAFO_ADJACENCIA__
 #define __GRAFO_ADJACENCIA__
+#include "grafo_tipos.h"
 
 /*
     DEFINICAO ADOTADA NESTA IMPLEMENTACAO:
@@ -12,18 +13,6 @@
         x_ij = 1, se existe uma aresta direcionada do vertice vi para o vertice vj,
         x_ij = 0, caso contrario.  
 */
-
-typedef struct {
-    int vertice_origem;
-    int vertice_destino;
-    double peso;
-} Aresta;
-
-typedef struct {
-    unsigned int quantidade_vertices;
-    unsigned char eh_direcionado;
-    int** matriz_adjacencia;
-} GrafoMatrizAdjacencia;
 
 GrafoMatrizAdjacencia* criarGrafoMatrizAdjacencia(int quantidade_vertices, int eh_direcionado);
 void adicionarArestaGrafoMatrizAdjacencia(GrafoMatrizAdjacencia* grafo, Aresta aresta);

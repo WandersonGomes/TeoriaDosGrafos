@@ -3,10 +3,11 @@
 #include "../lista/lista.h"
 #include "grafo_lista.h"
 
-GrafoListaAdjacencia* criarGrafoListaAdjacencia(int quantidade_vertices) {
+GrafoListaAdjacencia* criarGrafoListaAdjacencia(int quantidade_vertices, int eh_direcionado) {
     GrafoListaAdjacencia* grafo = (GrafoListaAdjacencia*) malloc(sizeof(GrafoListaAdjacencia));
     
     if (grafo != NULL) {
+        grafo->eh_direcionado = eh_direcionado;
         grafo->quantidade_vertices = quantidade_vertices;
         grafo->lista_adjacencia = (Lista**) malloc(sizeof(Lista*) * quantidade_vertices);
 

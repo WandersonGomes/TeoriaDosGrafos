@@ -1,5 +1,7 @@
 #ifndef __GRAFO_INCIDENCIA__
+
 #define __GRAFO_INCIDENCIA__
+#include "grafo_tipos.h"
 
 /*
     DEFINICAO ADOTADA NESTA IMPLEMENTACAO:
@@ -18,19 +20,6 @@
     X[v, e] = 1 se v e extremidade final de e e nao e lacete em v
     X[v, e] = 2 se e e lacete em v
 */
-
-typedef struct {
-    int vertice_origem;
-    int vertice_destino;
-    double peso;
-} Aresta;
-
-typedef struct {
-    unsigned int quantidade_vertices;
-    unsigned int quantidade_arestas;
-    unsigned char eh_direcionado;
-    int** matriz_incidencia;
-} GrafoMatrizIncidencia;
 
 GrafoMatrizIncidencia* criarGrafoMatrizIncidencia(int quantidade_vertices, int quantidade_arestas, int eh_direcionado);
 void adicionarArestaGrafoMatrizIncidencia(GrafoMatrizIncidencia* grafo, Aresta aresta);

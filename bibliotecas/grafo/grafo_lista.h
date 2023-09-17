@@ -15,7 +15,7 @@ typedef struct {
     Lista** lista_adjacencia;
 } GrafoListaAdjacencia;
 
-GrafoListaAdjacencia* criarGrafoListaAdjacencia(int quantidade_vertices);
+GrafoListaAdjacencia* criarGrafoListaAdjacencia(int quantidade_vertices, int eh_direcionado);
 void adicionarArestaGrafoMatrizIncidencia(GrafoListaAdjacencia* grafo, Aresta aresta);
 void imprimirGrafoMatrizIncidencia(GrafoListaAdjacencia* grafo);
 void destruirGrafoMatrizIncidencia(GrafoListaAdjacencia* grafo);
