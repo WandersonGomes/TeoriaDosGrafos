@@ -1,9 +1,12 @@
 #ifndef __MATRIZ__
 #define __MATRIZ__
 
-double** criarMatrizDinamica(int quantidade_linhas, int quantidade_colunas);
-void inicializarMatrizDinamica(double** matriz, int quantidade_linhas, int quantidade_colunas);
-void imprimirMatrizDinamica(double** matriz, int quantidade_linhas, int quantidade_colunas);
-void destruirMatrizDinamica(double** matriz, int quantidade_linhas);
+int** criarMatrizIntDinamica(int quantidade_linhas, int quantidade_colunas);
+void destruirMatrizIntDinamica(int** matriz, int quantidade_linhas);
+void imprimirMatrizIntDinamica(int** matriz, int quantidade_linhas, int quantidade_colunas);
+
+double** criarMatrizDoubleDinamica(int quantidade_linhas, int quantidade_colunas);
+void destruirMatrizDoubleDinamica(double** matriz, int quantidade_linhas);
+void imprimirMatrizDoubleDinamica(double** matriz, int quantidade_linhas int quantidade_colunas);
 
 #endif
