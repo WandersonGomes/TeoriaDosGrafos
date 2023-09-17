@@ -131,6 +131,33 @@ void implementarGrafoListaAdjacencia(FILE* arquivo, int direcionado) {
     }
 }
 
+void implementarGrafoMatrizPeso(FILE* arquivo, int direcionado) {
+    int quantidade_vertices;
+
+    fscanf(arquivo, "%d", &quantidade_vertices);
+    
+    if (quantidade_vertices < 1) {
+    
+        puts("ERROR: quantidade vertices invalida!");
+    
+    } else {
+    
+        GrafoMatrizPesos* grafoMatrizPesos = criarGrafoMatrizPesos(quantidade_vertices, direcionado);
+
+        Aresta aresta;
+        while (fscanf(arquivo, "%d %d %lf", &aresta.vertice_origem, &aresta.vertice_destino, &aresta.peso) != EOF) {
+            aresta.vertice_origem--;
+            aresta.vertice_destino--;
+
+            adicionarArestaGrafoMatrizPesos(grafoMatrizPesos, aresta);                
+        }
+                        
+        imprimirGrafoMatrizPesos(grafoMatrizPesos);
+
+        destruirGrafoMatrizPesos(grafoMatrizPesos);
+    }
+}
+
 int main(int quantidade_argumentos, const char** argumentos) {
     if (verificarArgumentosLinhaComando(quantidade_argumentos, argumentos) == SUCESSO) {
         if (quantidade_argumentos == 2) {
@@ -154,6 +181,8 @@ int main(int quantidade_argumentos, const char** argumentos) {
                 implementarGrafoMatrizIncidencia(arquivo, opcao_direcionado);
             else if (!strcmp(argumentos[4], "-la"))
                 implementarGrafoListaAdjacencia(arquivo, opcao_direcionado);
+            else if (!strcmp(argumentos[4], "-mp"))
+                implementarGrafoMatrizPeso(arquivo, opcao_direcionado);
 
             fclose(arquivo);
         } else {

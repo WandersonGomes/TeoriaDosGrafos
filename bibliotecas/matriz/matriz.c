@@ -61,8 +61,9 @@ void destruirMatrizDoubleDinamica(double** matriz, int quantidade_linhas) {
 
 void imprimirMatrizDoubleDinamica(double** matriz, int quantidade_linhas, int quantidade_colunas) {
     for (int i = 0; i < quantidade_linhas; i++) {
-        for (int j = 0; j < quantidade_colunas; j++)
+        for (int j = 0; j < quantidade_colunas; j++) {
             printf("%g ", matriz[i][j]);
+        }
 
         putchar('\n');
     }

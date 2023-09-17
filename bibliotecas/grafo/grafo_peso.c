@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "../matriz/matriz.h"
 #include "grafo_peso.h"
 
 GrafoMatrizPesos* criarGrafoMatrizPesos(int quantidade_vertices, int eh_direcionado) {
@@ -17,7 +18,7 @@ GrafoMatrizPesos* criarGrafoMatrizPesos(int quantidade_vertices, int eh_direcion
 void adicionarArestaGrafoMatrizPesos(GrafoMatrizPesos* grafo, Aresta aresta) {
     grafo->matriz_pesos[aresta.vertice_origem][aresta.vertice_destino] = aresta.peso;
 
-    if (grafo->eh_direcionado)
+    if (!grafo->eh_direcionado)
         grafo->matriz_pesos[aresta.vertice_destino][aresta.vertice_origem] = aresta.peso;
 }
 
