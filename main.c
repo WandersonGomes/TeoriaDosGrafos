@@ -118,8 +118,12 @@ void implementarGrafoListaAdjacencia(FILE* arquivo, int direcionado) {
         GrafoListaAdjacencia* grafoListaAdjacencia = criarGrafoListaAdjacencia(quantidade_vertices, direcionado);
                     
         Aresta aresta;
-        while (fscanf(arquivo, "%d %d %lf", &aresta.vertice_origem, &aresta.vertice_destino, &aresta.peso) != EOF)
-            adicionarArestaGrafoListaAdjacencia(grafoListaAdjacencia, aresta);                
+        while (fscanf(arquivo, "%d %d %lf", &aresta.vertice_origem, &aresta.vertice_destino, &aresta.peso) != EOF) {
+            aresta.vertice_origem--;
+            aresta.vertice_destino--;
+
+            adicionarArestaGrafoListaAdjacencia(grafoListaAdjacencia, aresta);            
+        }                
                         
         imprimirGrafoListaAdjacencia(grafoListaAdjacencia);
 

@@ -23,7 +23,7 @@ No* criarNo(Dado dado) {
 }
 
 void imprimirNo(No* no) {
-    printf("[%d | %g]->", no->dado.vertice, no->dado.peso);
+    printf("[%d | %g] -> ", no->dado.vertice + 1, no->dado.peso);
 }
 
 Lista* criarLista() {
@@ -44,7 +44,7 @@ void inserirListaOrdenadoCrescente(Lista* lista, Dado dado) {
         lista->inicio = novo_no;
     } else {
         if (lista->tamanho == 1) {
-            if (lista->inicio->dado.vertice >= dado.vertice)
+            if (lista->inicio->dado.vertice <= dado.vertice)
                 lista->inicio->proximo = novo_no;
             else {
                 novo_no->proximo = lista->inicio;
@@ -54,7 +54,7 @@ void inserirListaOrdenadoCrescente(Lista* lista, Dado dado) {
             No* no_anterior = lista->inicio;
             No* no_atual = lista->inicio;
 
-            while (no_atual->dado.vertice < no_atual->dado.vertice) {
+            while (no_atual->dado.vertice < dado.vertice) {
                 no_anterior = no_atual;
                 no_atual = no_atual->proximo;
                 
@@ -62,8 +62,8 @@ void inserirListaOrdenadoCrescente(Lista* lista, Dado dado) {
                     break;
             }
 
-            no_anterior->proximo = novo_no;
             novo_no->proximo = no_atual;
+            no_anterior->proximo = novo_no;
         }
     }
 

@@ -19,17 +19,12 @@ GrafoListaAdjacencia* criarGrafoListaAdjacencia(int quantidade_vertices, int eh_
 }
 
 void adicionarArestaGrafoListaAdjacencia(GrafoListaAdjacencia* grafo, Aresta aresta) {
-    if (grafo->eh_direcionado) {
-        inserirListaOrdenadoCrescente(
-            grafo->lista_adjacencia[aresta.vertice_origem], 
-            criarDado(aresta.vertice_destino, aresta.peso)
-        );
-    } else {
-        inserirListaOrdenadoCrescente(
-            grafo->lista_adjacencia[aresta.vertice_origem], 
-            criarDado(aresta.vertice_destino, aresta.peso)
-        );
-
+    inserirListaOrdenadoCrescente(
+        grafo->lista_adjacencia[aresta.vertice_origem], 
+        criarDado(aresta.vertice_destino, aresta.peso)
+    );
+        
+    if (!grafo->eh_direcionado) {
         inserirListaOrdenadoCrescente(
             grafo->lista_adjacencia[aresta.vertice_destino], 
             criarDado(aresta.vertice_origem, aresta.peso)
@@ -50,8 +45,10 @@ void imprimirGrafoListaAdjacencia(GrafoListaAdjacencia* grafo) {
     puts("}");
 
     puts("\nLISTA ADJACENCIA:"); 
-    for (int i = 0; i < grafo->quantidade_vertices; i++)
-        grafo->lista_adjacencia[i];
+    for (int i = 0; i < grafo->quantidade_vertices; i++) {
+        printf("[%d] -> ", i+1);
+        imprimirLista(grafo->lista_adjacencia[i]);
+    }
 }
 
 void destruirGrafoListaAdjacencia(GrafoListaAdjacencia* grafo) {
