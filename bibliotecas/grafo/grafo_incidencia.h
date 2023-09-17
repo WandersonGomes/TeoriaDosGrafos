@@ -22,7 +22,7 @@
 */
 
 GrafoMatrizIncidencia* criarGrafoMatrizIncidencia(int quantidade_vertices, int quantidade_arestas, int eh_direcionado);
-void adicionarArestaGrafoMatrizIncidencia(GrafoMatrizIncidencia* grafo, Aresta aresta);
+void adicionarArestaGrafoMatrizIncidencia(GrafoMatrizIncidencia* grafo, Aresta aresta, int indice_aresta);
 void imprimirGrafoMatrizIncidencia(GrafoMatrizIncidencia* grafo);
 void destruirGrafoMatrizIncidencia(GrafoMatrizIncidencia* grafo);
 

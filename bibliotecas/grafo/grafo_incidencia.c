@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "../bibliotecas/matriz/matriz.h"
+#include "../matriz/matriz.h"
 #include "grafo_incidencia.h"
 
 GrafoMatrizIncidencia* criarGrafoMatrizIncidencia(int quantidade_vertices, int quantidade_arestas, int eh_direcionado) {
@@ -16,14 +16,15 @@ GrafoMatrizIncidencia* criarGrafoMatrizIncidencia(int quantidade_vertices, int q
     return grafo;
 }
 
-void adicionarArestaGrafoMatrizAdjacencia(GrafoMatrizIncidencia* grafo, Aresta aresta, int indice_aresta) {
-    if (grafo->eh_direcionado) {
-        if (aresta.vertice_origem != aresta.vertice_destino)
+void adicionarArestaGrafoMatrizIncidencia(GrafoMatrizIncidencia* grafo, Aresta aresta, int indice_aresta) {
+    if (!grafo->eh_direcionado) {
+        if (aresta.vertice_origem != aresta.vertice_destino) {
+            grafo->matriz_incidencia[aresta.vertice_origem][indice_aresta] = 1;
             grafo->matriz_incidencia[aresta.vertice_destino][indice_aresta] = 1;
-        else
+        } else
             grafo->matriz_incidencia[aresta.vertice_destino][indice_aresta] = 2;
     } else {
-        if (aresta.vertice_origem = aresta.vertice_destino)
+        if (aresta.vertice_origem == aresta.vertice_destino)
             grafo->matriz_incidencia[aresta.vertice_destino][indice_aresta] = 2;
         else {
             grafo->matriz_incidencia[aresta.vertice_origem][indice_aresta] = -1;
@@ -32,7 +33,7 @@ void adicionarArestaGrafoMatrizAdjacencia(GrafoMatrizIncidencia* grafo, Aresta a
     }
 }
 
-void imprimirGrafoMatrizAdjacencia(GrafoMatrizIncidencia* grafo) {
+void imprimirGrafoMatrizIncidencia(GrafoMatrizIncidencia* grafo) {
     printf("TIPO: ");
     if (grafo->eh_direcionado)
         puts("GRAFO DIRECIONADO (DIGRAFO)");
@@ -48,7 +49,7 @@ void imprimirGrafoMatrizAdjacencia(GrafoMatrizIncidencia* grafo) {
     imprimirMatrizIntDinamica(grafo->matriz_incidencia, grafo->quantidade_vertices, grafo->quantidade_arestas);
 }
 
-void destruirGrafoMatrizAdjacencia(GrafoMatrizIncidencia* grafo) {
+void destruirGrafoMatrizIncidencia(GrafoMatrizIncidencia* grafo) {
     destruirMatrizIntDinamica(grafo->matriz_incidencia, grafo->quantidade_vertices);
     free(grafo);
 }

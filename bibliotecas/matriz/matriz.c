@@ -29,7 +29,7 @@ void destruirMatrizIntDinamica(int** matriz, int quantidade_linhas) {
 void imprimirMatrizIntDinamica(int** matriz, int quantidade_linhas, int quantidade_colunas) {
     for (int i = 0; i < quantidade_linhas; i++) {
         for (int j = 0; j < quantidade_colunas; j++)
-            printf("%d ", matriz[i][j]);
+            printf("%2d ", matriz[i][j]);
 
         putchar('\n');
     }

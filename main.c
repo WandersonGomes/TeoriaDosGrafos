@@ -1,9 +1,16 @@
 #include <stdio.h>
 #include <string.h>
-#include "./bibliotecas/grafo/grafo.h"
+#include "./bibliotecas/grafo/grafo_adjacencia.h"
+#include "./bibliotecas/grafo/grafo_incidencia.h"
+#include "./bibliotecas/grafo/grafo_lista.h"
+
+#include "./bibliotecas/grafo/grafo_peso.h"
 
 #define ERROR -1
 #define SUCESSO 1
+
+#define DIRECIONADO 1
+#define NAO_DIRECIONADO 0
 
 void apresentarAjuda() {
     puts("Autores: \
@@ -47,8 +54,12 @@ void implementarGrafoMatrizAdjacencia(FILE* arquivo, int direcionado) {
         GrafoMatrizAdjacencia* grafoMatrizAdjacencia = criarGrafoMatrizAdjacencia(quantidade_vertices, direcionado);
                     
         Aresta aresta;
-        while (fscanf(arquivo, "%d %d %lf", &aresta.vertice_origem, &aresta.vertice_destino, &aresta.peso) != EOF)
+        while (fscanf(arquivo, "%d %d %lf", &aresta.vertice_origem, &aresta.vertice_destino, &aresta.peso) != EOF) {
+            aresta.vertice_origem--;
+            aresta.vertice_destino--;
+
             adicionarArestaGrafoMatrizAdjacencia(grafoMatrizAdjacencia, aresta);                
+        }
                         
         imprimirGrafoMatrizAdjacencia(grafoMatrizAdjacencia);
 
@@ -77,15 +88,42 @@ void implementarGrafoMatrizIncidencia(FILE* arquivo, int direcionado) {
         fscanf(arquivo, "%*d");
 
         GrafoMatrizIncidencia* grafoMatrizIncidencia = criarGrafoMatrizIncidencia(quantidade_vertices, quantidade_arestas, direcionado);
-        int numero = 1;
+        int numero = 0;
 
-        while (fscanf(arquivo, "%d %d %lf", &aresta.vertice_origem, &aresta.vertice_destino, &aresta.peso) != EOF)
-            adicionarArestaGrafoMatrizIncidencia(grafoMatrizIncidencia, aresta, numero++);                
+        while (fscanf(arquivo, "%d %d %lf", &aresta.vertice_origem, &aresta.vertice_destino, &aresta.peso) != EOF) {
+            aresta.vertice_origem--;
+            aresta.vertice_destino--;
+
+            adicionarArestaGrafoMatrizIncidencia(grafoMatrizIncidencia, aresta, numero++); 
+        }
                         
         imprimirGrafoMatrizIncidencia(grafoMatrizIncidencia);
 
         destruirGrafoMatrizIncidencia(grafoMatrizIncidencia);
 
+    }
+}
+
+void implementarGrafoListaAdjacencia(FILE* arquivo, int direcionado) {
+    int quantidade_vertices;
+
+    fscanf(arquivo, "%d", &quantidade_vertices);
+    
+    if (quantidade_vertices < 1) {
+    
+        puts("ERROR: quantidade vertices invalida!");
+    
+    } else {
+    
+        GrafoListaAdjacencia* grafoListaAdjacencia = criarGrafoListaAdjacencia(quantidade_vertices, direcionado);
+                    
+        Aresta aresta;
+        while (fscanf(arquivo, "%d %d %lf", &aresta.vertice_origem, &aresta.vertice_destino, &aresta.peso) != EOF)
+            adicionarArestaGrafoListaAdjacencia(grafoListaAdjacencia, aresta);                
+                        
+        imprimirGrafoListaAdjacencia(grafoListaAdjacencia);
+
+        destruirGrafoListaAdjacencia(grafoListaAdjacencia);
     }
 }
 
@@ -108,8 +146,10 @@ int main(int quantidade_argumentos, const char** argumentos) {
 
             if (!strcmp(argumentos[4], "-ma"))
                 implementarGrafoMatrizAdjacencia(arquivo, opcao_direcionado);
-            if (!strcmp(argumentos[4], "-mi"))
+            else if (!strcmp(argumentos[4], "-mi"))
                 implementarGrafoMatrizIncidencia(arquivo, opcao_direcionado);
+            else if (!strcmp(argumentos[4], "-la"))
+                implementarGrafoListaAdjacencia(arquivo, opcao_direcionado);
 
             fclose(arquivo);
         } else {

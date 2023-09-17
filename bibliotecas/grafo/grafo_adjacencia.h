@@ -1,4 +1,5 @@
 #ifndef __GRAFO_ADJACENCIA__
+
 #define __GRAFO_ADJACENCIA__
 #include "grafo_tipos.h"
 

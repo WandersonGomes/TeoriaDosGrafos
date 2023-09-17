@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "../bibliotecas/matriz/matriz.h"
+#include "../matriz/matriz.h"
 #include "grafo_adjacencia.h"
 
 GrafoMatrizAdjacencia* criarGrafoMatrizAdjacencia(int quantidade_vertices, int eh_direcionado) {
@@ -18,7 +18,7 @@ GrafoMatrizAdjacencia* criarGrafoMatrizAdjacencia(int quantidade_vertices, int e
 void adicionarArestaGrafoMatrizAdjacencia(GrafoMatrizAdjacencia* grafo, Aresta aresta) {
     grafo->matriz_adjacencia[aresta.vertice_origem][aresta.vertice_destino] = 1;
 
-    if (grafo->eh_direcionado)
+    if (!grafo->eh_direcionado)
         grafo->matriz_adjacencia[aresta.vertice_destino][aresta.vertice_origem] = 1;
 }
 

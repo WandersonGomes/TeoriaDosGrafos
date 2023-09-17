@@ -18,7 +18,7 @@ GrafoListaAdjacencia* criarGrafoListaAdjacencia(int quantidade_vertices, int eh_
     return grafo;
 }
 
-void adicionarArestaGrafoMatrizIncidencia(GrafoListaAdjacencia* grafo, Aresta aresta) {
+void adicionarArestaGrafoListaAdjacencia(GrafoListaAdjacencia* grafo, Aresta aresta) {
     if (grafo->eh_direcionado) {
         inserirListaOrdenadoCrescente(
             grafo->lista_adjacencia[aresta.vertice_origem], 
@@ -37,7 +37,7 @@ void adicionarArestaGrafoMatrizIncidencia(GrafoListaAdjacencia* grafo, Aresta ar
     }
 }
 
-void imprimirGrafoMatrizIncidencia(GrafoListaAdjacencia* grafo) {
+void imprimirGrafoListaAdjacencia(GrafoListaAdjacencia* grafo) {
     printf("TIPO: ");
     if (grafo->eh_direcionado)
         puts("GRAFO DIRECIONADO (DIGRAFO)");

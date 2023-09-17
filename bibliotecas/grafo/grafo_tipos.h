@@ -1,5 +1,6 @@
 #ifndef __GRAFO_TIPOS__
 #define __GRAFO_TIPOS__
+#include "../lista/lista.h"
 
 typedef struct {
     int vertice_origem;
@@ -19,6 +20,12 @@ typedef struct {
     unsigned char eh_direcionado;
     int** matriz_incidencia;
 } GrafoMatrizIncidencia;
+
+typedef struct {
+    int eh_direcionado;
+    int quantidade_vertices;
+    Lista** lista_adjacencia;
+} GrafoListaAdjacencia;
 
 typedef struct {
     int quantidade_vertices;

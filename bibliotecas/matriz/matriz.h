@@ -7,6 +7,6 @@ void imprimirMatrizIntDinamica(int** matriz, int quantidade_linhas, int quantida
 
 double** criarMatrizDoubleDinamica(int quantidade_linhas, int quantidade_colunas);
 void destruirMatrizDoubleDinamica(double** matriz, int quantidade_linhas);
-void imprimirMatrizDoubleDinamica(double** matriz, int quantidade_linhas int quantidade_colunas);
+void imprimirMatrizDoubleDinamica(double** matriz, int quantidade_linhas, int quantidade_colunas);
 
 #endif
