@@ -5,14 +5,10 @@
 
 /*
     DEFINICAO ADOTADA NESTA IMPLEMENTACAO:
-    Matriz de Adjacência é uma matriz n x n, denotada por X = [x_ij] e definida como:
-        x_ij = 1, se existe uma aresta entre os vertices vi e vj,
-        x_ij = 0, caso contrario.
-
-    Obs.:
-    Se tivermos um grafo orientado(digrafo):
-        x_ij = 1, se existe uma aresta direcionada do vertice vi para o vertice vj,
-        x_ij = 0, caso contrario.  
+    -> Uma matriz A = [a_ij] quadrada de ordem n e denominada matriz de adjacencia
+    de G = (V, A) quando:
+        a_ij = 1, se existe (i, j) pertencente a M
+        a_ij = 0 em caso contrario
 */
 
 GrafoMatrizAdjacencia* criarGrafoMatrizAdjacencia(int quantidade_vertices, int eh_direcionado);

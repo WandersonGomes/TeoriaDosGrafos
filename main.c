@@ -3,7 +3,7 @@
 #include "./bibliotecas/grafo/grafo_adjacencia.h"
 #include "./bibliotecas/grafo/grafo_incidencia.h"
 #include "./bibliotecas/grafo/grafo_lista.h"
-
+#include "./bibliotecas/grafo/grafo_vetorial.h"
 #include "./bibliotecas/grafo/grafo_peso.h"
 
 #define ERROR -1
@@ -131,6 +131,33 @@ void implementarGrafoListaAdjacencia(FILE* arquivo, int direcionado) {
     }
 }
 
+void implementarGrafoVetorial(FILE* arquivo, int direcionado) {
+    int quantidade_vertices;
+
+    fscanf(arquivo, "%d", &quantidade_vertices);
+    
+    if (quantidade_vertices < 1) {
+    
+        puts("ERROR: quantidade vertices invalida!");
+    
+    } else {
+    
+        GrafoVetorial* grafoVetorial = criarGrafoVetorial(quantidade_vertices, direcionado);
+                    
+        Aresta aresta;
+        while (fscanf(arquivo, "%d %d %lf", &aresta.vertice_origem, &aresta.vertice_destino, &aresta.peso) != EOF) {
+            aresta.vertice_origem--;
+            aresta.vertice_destino--;
+
+            adicionarArestaGrafoVetorial(grafoVetorial, aresta);            
+        }                
+                        
+        imprimirGrafoVetorial(grafoVetorial);
+
+        destruirGrafoVetorial(grafoVetorial);
+    }
+}
+
 void implementarGrafoMatrizPeso(FILE* arquivo, int direcionado) {
     int quantidade_vertices;
 
@@ -183,6 +210,8 @@ int main(int quantidade_argumentos, const char** argumentos) {
                 implementarGrafoListaAdjacencia(arquivo, opcao_direcionado);
             else if (!strcmp(argumentos[4], "-mp"))
                 implementarGrafoMatrizPeso(arquivo, opcao_direcionado);
+            else if (!strcmp(argumentos[4], "-ve"))
+                implementarGrafoVetorial(arquivo, opcao_direcionado);
 
             fclose(arquivo);
         } else {

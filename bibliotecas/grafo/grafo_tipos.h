@@ -33,4 +33,10 @@ typedef struct {
     double** matriz_pesos;
 } GrafoMatrizPesos;
 
+typedef struct {
+    int eh_direcionado;
+    int quantidade_vertices;
+    Lista** lista_adjacencia;
+} GrafoVetorial;
+
 #endif
