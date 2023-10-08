@@ -12,7 +12,7 @@ int main() {
     system("gcc ./bibliotecas/lista/lista.c -c lista.o");
     system("gcc main.c -c main.o");
 
-    system("gcc main.o grafo_adjacencia.o grafo_incidencia.o grafo_lista.o grafo_peso.o grafo_vetorial.o matriz.o lista.o -o executavel_windows");
+    system("gcc main.o grafo_adjacencia.o grafo_incidencia.o grafo_lista.o grafo_peso.o grafo_vetorial.o matriz.o lista.o -o programa-grafo");
 
     system ("del *.o");
 

@@ -16,17 +16,24 @@ void apresentarAjuda() {
     puts("Autores: \
     Adriano Pereira da Silva Junior,\ 
     Helder Oliveira de Andrade,\
-     Isaac de Sa da Silva, \
+    Isaac de Sa da Silva, \
     Wanderson Gomes da Costa.\n");
     
-    puts("grafo.o read <arquivo de entrada> show [TIPO DE IMPLEMENTACAO DO GRAFO] [DIRECIONADO - OPCIONAL]\n");
+    puts("./programa-grafo read <arquivo de entrada> show [TIPO DE IMPLEMENTACAO DO GRAFO] [DIRECIONADO - OPCIONAL]\n");
     puts("[TIPO DE IMPLEMENTACAO DO GRAFO]:");
     puts("\t-ma: implementa o grafo como uma matriz de adjacencia\n");
+    puts("\t-mi: implementa o grafo como uma matriz de incidencia\n");
+    puts("\t-la: implementa o grafo como uma lista de adjacencia\n");
+    puts("\t-mp: implementa o grafo como uma matriz de pesos\n");
+    puts("\t-ve: implementa o grafo como vetores\n");
     puts("\n[DIRECIONADO = OPCIONAL]:");
     puts("\t-d: considera o grafo como direcionado.");
 }
 
 int verificarArgumentosLinhaComando(int quantidade_argumentos, const char** argumentos) {
+    if (quantidade_argumentos < 2)
+        return ERROR;
+        
     if (quantidade_argumentos == 2) 
         return (strcmp(argumentos[1], "help") != 0) ? ERROR : SUCESSO;
 
@@ -64,7 +71,6 @@ void implementarGrafoMatrizAdjacencia(FILE* arquivo, int direcionado) {
         imprimirGrafoMatrizAdjacencia(grafoMatrizAdjacencia);
 
         destruirGrafoMatrizAdjacencia(grafoMatrizAdjacencia);
-    
     }
 }
 
